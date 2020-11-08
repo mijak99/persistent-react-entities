@@ -1,4 +1,8 @@
-import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
+
+// import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
+// CommonJS variant
+var toolkit = require('@reduxjs/toolkit')
+const { createSlice, createEntityAdapter, createAsyncThunk } = toolkit;
 
 const adapter = createEntityAdapter({
     selectId: (entity) => entity.id,
@@ -176,7 +180,7 @@ function createEntitySlice(actions) {
  * 
  */
 
-export class RESTEntityAdapter {
+class RESTEntityAdapter {
     /**
      * 
      * @param {*} type 
@@ -204,3 +208,5 @@ export class RESTEntityAdapter {
 
 
 }
+
+exports.RESTEntityAdapter = RESTEntityAdapter;

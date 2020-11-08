@@ -1,6 +1,6 @@
 
-const entityRouter = require('./entityRouter');
-const RESTEntityAdapter = require('./RESTEntityAdapter')
+const entityRouter = require('./server/entityRouter');
+const RESTEntityAdapter = require('./client/RESTEntityAdapter')
 
 module.exports = {
     RESTEntityAdapter,

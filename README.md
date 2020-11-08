@@ -10,14 +10,16 @@
 - TODO: move away from hardcoded test.db
 
 ```javascript
+
 var express = require("express");
 var app = express();
 var http = require('http').createServer(app);
 
+var { entityRouter } = require('persistent-react-entities')
+
 const port = 8111;
 
 // create REST API endpoint
-var entityRouter = require('./entityRouter')
 app.use('/apiendpoint', entityRouter)
 
 // start server
