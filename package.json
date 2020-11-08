@@ -1,0 +1,29 @@
+{
+  "name": "persistent-react-entities",
+  "version": "1.0.0",
+  "description": "Persistent entities across client and backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest --watch test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mijak99/persistent-react-entities.git"
+  },
+  "author": "Mikael Jakobsson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mijak99/persistent-react-entities/issues"
+  },
+  "homepage": "https://github.com/mijak99/persistent-react-entities#readme",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "node-fetch": "^2.6.1"
+  }
+}
