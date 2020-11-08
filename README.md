@@ -37,7 +37,7 @@ Example usage
 ```javascript
 
 import { configureStore } from '@reduxjs/toolkit';
-import { RESTEntityAdapter }  from 'persistent-react-entities';
+import { RESTEntityAdapter }  from 'persistent-react-entities/client/RESTEntityAdapter';
 
 export const Order = new RESTEntityAdapter("Order");
 export const OrderLine = new RESTEntityAdapter("OrderLine");
