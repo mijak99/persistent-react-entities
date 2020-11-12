@@ -111,15 +111,15 @@ function createEntitySlice(actions) {
         initialState: adapter.getInitialState(),
         reducers: {
             create(state, action) {
-                console.log("adding one")
+                // console.log("adding one")
                 adapter.addOne(state, action.payload)
             },
             update(state, action) {
-                console.log("updating one")
+                // console.log("updating one")
                 adapter.updateOne(state, { id: action.payload.id, changes: action.payload });
             },
             upsert(state, action) {
-                console.log("updserting one")
+                // console.log("updserting one")
                 adapter.upsertOne(state, action.payload)
             },
             remove: adapter.removeOne,
@@ -129,45 +129,45 @@ function createEntitySlice(actions) {
         extraReducers: {
             // Add reducers for additional action types here, and handle loading state as needed
             [actions.updateEntityAsync.fulfilled]: (state, action) => {
-                console.log("UDPATE ENTITY FULFILLED", action, state)
+                // console.log("UDPATE ENTITY FULFILLED", action, state)
                 adapter.updateOne(state, { id: action.payload.id, changes: action.payload });
-                console.log("UDPATE ENTITY FULFILLED after", action, state)
+                // console.log("UDPATE ENTITY FULFILLED after", action, state)
             },
             [actions.updateEntityAsync.rejected]: (state, action) => {
                 console.log("UDPATE ENTITY REJECTED", action)
             },
             [actions.updateEntityAsync.pending]: (state, action) => {
-                console.log("UDPATE ENTITY PENDING", action)
+                // console.log("UDPATE ENTITY PENDING", action)
             },
             [actions.createEntityAsync.fulfilled]: (state, action) => {
-                console.log("CREATE ENTITY FULFILLED", action, state)
+                // console.log("CREATE ENTITY FULFILLED", action, state)
                 adapter.addOne(state, action.payload);
             },
             [actions.createEntityAsync.rejected]: (state, action) => {
                 console.log("CREATE ENTITY REJECTED", action)
             },
             [actions.createEntityAsync.pending]: (state, action) => {
-                console.log("CREATE ENTITY PENDING", action)
+                // console.log("CREATE ENTITY PENDING", action)
             },
             [actions.removeEntityAsync.fulfilled]: (state, action) => {
-                console.log("REMOVE ENTITY FULFILLED", action)
+                // console.log("REMOVE ENTITY FULFILLED", action)
                 adapter.removeOne(state, action.payload);
             },
             [actions.removeEntityAsync.rejected]: (state, action) => {
                 console.log("REMOVE ENTITY REJECTED", action)
             },
             [actions.removeEntityAsync.pending]: (state, action) => {
-                console.log("REMOVE ENTITY PENDING", action)
+                // console.log("REMOVE ENTITY PENDING", action)
             },
             [actions.fetchAllEntities.fulfilled]: (state, action) => {
-                console.log("FETCH ALL FULFILLED", action)
+                // console.log("FETCH ALL FULFILLED", action)
                 adapter.setAll(state, action.payload);
             },
             [actions.fetchAllEntities.rejected]: (state, action) => {
                 console.log("FETCH ALL REJECTED", action)
             },
             [actions.fetchAllEntities.pending]: (state, action) => {
-                console.log("FETCH ALL PENDING", action)
+                // console.log("FETCH ALL PENDING", action)
             },
 
         }
