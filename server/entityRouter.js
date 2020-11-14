@@ -35,13 +35,14 @@ function authChecker(req, res, next) {
     }
 }
 
+/*
 function logger(req, res, next) {
     console.log("req", req.method, req.url)
     next();
 }
-
+*/
 router.use('/api', authChecker);
-router.use('/', logger);
+// router.use('/', logger);
 
 
 router.get('/logout', (req, res) => {
