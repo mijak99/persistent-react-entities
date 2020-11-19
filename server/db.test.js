@@ -65,14 +65,15 @@ describe('create', () => {
 
 describe('update', () => {
 
-    it('update without wrong user shall fail', async () => {
+    it('update with wrong user shall fail', async () => {
         // console.log("usier", TEST_USER);
         try {
             const random_user = -1;
+            // console.log("entity", TEST_ENTITY)
             const result = await db.updateEntity(random_user, TEST_ENTITY);
             expect(2).toBe(1); // should not happen!
         } catch (err) {
-            // console.log(err)
+            // console.log("error", err)
             expect(err).toBe("Not updated"); // constraint
         }
     })
@@ -83,6 +84,13 @@ describe('update', () => {
         expect(result.name).toBe(newName);
     })
 
+    it('update shall update json partially too', async () => {
+        const newName = "newer name"
+        const result = await db.updateEntity(TEST_USER_ID, { id:TEST_ENTITY.id, address: "address" } );
+        // console.log("result is", result)
+        expect(result.name).not.toBeNull();
+        expect(result.address).toBe("address");
+    })
 
 });
 

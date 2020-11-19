@@ -1,6 +1,6 @@
 {
   "name": "persistent-react-entities",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Persistent entities across client and backend",
   "main": "index.js",
   "scripts": {

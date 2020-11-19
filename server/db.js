@@ -32,16 +32,22 @@ class DB {
     }
 
     updateEntity(userId, entity) {
-        return new Promise((resolve, reject) => {
-            const sql = 'UPDATE entities SET json = ? WHERE id = ? AND userId = ?'
-            // console.log(sql, entity)
-            this.db.run(sql, [JSON.stringify(entity), entity.id, userId],
-                function(err) {
-                    // console.log("update", err, this.changes)
-                    if (err) reject(err.message);
-                    else if (this.changes !== 1) reject("Not updated");
-                    else resolve(entity)
-                });
+        return new Promise(async (resolve, reject) => {
+            this.getEntity(userId, entity.id).then(old => {
+                const sql = 'UPDATE entities SET json = ? WHERE id = ? AND userId = ?'
+                const updated = { ...old, ...entity }
+                // console.log("old", sql, entity, old, updated)
+                this.db.run(sql, [JSON.stringify(updated), entity.id, userId],
+                    function (err) {
+                        // console.log("update", err, this.changes)
+                        if (err) reject(err.message);
+                        else if (this.changes !== 1) reject("Not updated");
+                        else resolve(updated)
+                    });
+    
+            }).catch((err) => { reject("Not updated")})
+
+
         });
     }
 
@@ -62,7 +68,7 @@ class DB {
             const sql = 'DELETE FROM entities WHERE userId = ? AND id = ?'
             // console.log(sql, entityId)
             this.db.run(sql, [userId, entityId],
-                function(err) {
+                function (err) {
                     if (err) reject(err.message);
                     else if (this.changes !== 1) reject("No such entity")
                     else resolve(entityId);
@@ -142,7 +148,7 @@ class DB {
     createUser(user) {
         return new Promise((resolve, reject) => {
             const sql = 'INSERT INTO users (email, json, salt, token) VALUES (?, ?, ?, ?)'
-            const token = "randomToken" + Math.floor(Math.random()*1000);
+            const token = "randomToken" + Math.floor(Math.random() * 1000);
             this.db.run(sql, [user.email, JSON.stringify(user), user.salt, user.hashedPassword],
                 function (err) { // lambda functions don't get a "this", and I need it for lastID
                     // console.log("INSERT", err)
@@ -163,14 +169,14 @@ class DB {
                     if (err) {
                         console.log("err", err.message)
                         reject(err.message);
-                    } else if (!row) { 
+                    } else if (!row) {
                         console.log("no such user")
                         reject("Not found");
 
-                    } else {
+                    } else {
                         console.log("row", row)
 
-                        var theUser = JSON.parse(row.json) ;
+                        var theUser = JSON.parse(row.json);
                         theUser.id = row.id;
 
                         if (row) resolve(theUser);
@@ -181,7 +187,7 @@ class DB {
                     }
                 });
         })
-    }    
+    }
 
     updateUserProfile(userId, email, userProfile) {
         return new Promise((resolve, reject) => {
