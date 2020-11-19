@@ -25,7 +25,7 @@ function createFetchAllEntities(entityType) {
                 headers
             });
             if (response.ok) {
-                console.log("FETCHed all", entityType)
+                // console.log("FETCHed all", entityType)
                 return response.json();
             } else {
                 return rejectWithValue(response.error)
