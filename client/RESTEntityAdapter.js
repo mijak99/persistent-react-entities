@@ -47,7 +47,7 @@ function createUpdateEntityAsync(entityType) {
             });
             if (response.ok) {
                 const data = response.json();
-                console.log("the response data was", data)
+                // console.log("the response data was", data)
                 return data;
             } else {
                 console.log("error response", response)
