@@ -2,12 +2,16 @@
 
 # Getting started
 
-    npm install --save @mijak/persistent-react-entities
+    npx create-react-app my-app --template redux
+    cd my-app
+    npm install --save persistent-react-entities
 
 # Using it in Express
 
 - Uses a sqlite3 backend
 - TODO: move away from hardcoded test.db
+
+In a server.js file
 
 ```javascript
 
