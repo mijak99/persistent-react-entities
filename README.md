@@ -32,6 +32,14 @@ http.listen(port, '0.0.0.0', () => {
 });
 ```
 
+For development, you may want to add the following to your package.json, to enable API access to your react app
+
+```
+  "proxy": "http://localhost:8111",
+```
+
+
+
 # Client side (React) 
 
 - based on redux toolkit entityAdapter
